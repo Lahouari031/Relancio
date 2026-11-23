@@ -135,7 +135,8 @@
 
 <!--
   À REMPLACER AVANT MISE EN LIGNE :
-  1. STRIPE_FOUNDER_LINK  → ton Payment Link Stripe à 39 € (offre fondateur)
+  1. STRIPE_FOUNDER_LINK  → ton Payment Link Stripe à 39 € (offre fondateur, paiement unique)
+     STRIPE_MONTHLY_LINK  → ton Payment Link Stripe à 9 €/mois (abonnement)
   2. Ton email de contact → contact@relancio.fr (ou ton adresse)
   3. La page des mentions légales (obligatoire en France)
 -->
@@ -162,7 +163,7 @@
         <a href="STRIPE_FOUNDER_LINK" class="btn btn-primary">Je veux être payé à temps →</a>
         <a href="#comment" class="btn btn-ghost">Voir comment ça marche</a>
       </div>
-      <p class="hero-note">Offre fondateur : 39 € pour 12 mois, réservée aux 20 premiers.</p>
+      <p class="hero-note">Offre fondateur : 39 € pour 12 mois, réservée aux 20 premiers. Ou 9 €/mois, sans engagement.</p>
     </div>
 
     <div class="timeline" aria-label="Exemple de scénario de relance">
@@ -271,15 +272,15 @@
       </div>
       <div class="plan">
         <h3>Mensuel</h3>
-        <p class="desc">Après l'offre fondateur.</p>
+        <p class="desc">Pour tester un mois, sans engagement.</p>
         <div class="price">9 €<small> / mois</small></div>
-        <p class="price-note">Sans engagement</p>
+        <p class="price-note">Résiliable à tout moment</p>
         <ul>
           <li>Factures illimitées</li>
           <li>Relances automatiques</li>
           <li>Tableau de bord des paiements</li>
         </ul>
-        <a href="#faq" class="btn btn-ghost">Bientôt disponible</a>
+        <a href="STRIPE_MONTHLY_LINK" class="btn btn-ghost">Commencer à 9 €/mois</a>
       </div>
     </div>
   </div>
@@ -305,6 +306,10 @@
       <details>
         <summary>Je dois changer de logiciel de facturation ?</summary>
         <p>Non. Relancio fonctionne à côté de ta façon actuelle de facturer : tu déposes simplement le PDF de ta facture.</p>
+      </details>
+      <details>
+        <summary>Je peux arrêter l'abonnement mensuel quand je veux ?</summary>
+        <p>Oui. L'offre mensuelle est sans engagement : tu peux la résilier à tout moment, et tu n'es plus prélevé le mois suivant.</p>
       </details>
       <details>
         <summary>Relancio encaisse-t-il l'argent à ma place ?</summary>
