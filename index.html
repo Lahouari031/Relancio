@@ -129,14 +129,27 @@
     .nav-links a:not(.btn){display:none}
     section{padding:60px 0}
   }
+
+  /* FORM */
+  .signup{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:32px;max-width:620px;margin-top:40px}
+  .field{margin-bottom:18px}
+  .field label{display:block;font-weight:600;font-size:15px;margin-bottom:6px}
+  .field input,.field select{width:100%;font:inherit;font-size:16px;padding:12px 14px;border:1px solid var(--line);border-radius:10px;background:#fff;color:var(--ink)}
+  .field input:focus,.field select:focus{outline:2px solid var(--accent-soft);border-color:var(--accent)}
+  .consent{display:flex;gap:10px;align-items:flex-start;font-size:14px;color:var(--muted);margin:4px 0 22px}
+  .consent input{margin-top:3px;accent-color:var(--accent)}
+  .signup button{width:100%;border:0;cursor:pointer;font-family:inherit}
+  .form-msg{margin-top:16px;font-size:15px;display:none;padding:14px;border-radius:10px}
+  .form-msg.ok{display:block;background:var(--accent-soft);color:var(--accent)}
+  .form-msg.err{display:block;background:var(--red-soft);color:var(--red)}
 </style>
 </head>
 <body>
 
 <!--
   À REMPLACER AVANT MISE EN LIGNE :
-  1. STRIPE_FOUNDER_LINK  → ton Payment Link Stripe à 39 € (offre fondateur, paiement unique)
-     STRIPE_MONTHLY_LINK  → ton Payment Link Stripe à 9 €/mois (abonnement)
+  1. Formulaire bêta relié à Formspree (formspree.io/f/mppdokzl)
+     (Plus tard, quand Stripe sera activé, on remettra les boutons de paiement.)
   2. Ton email de contact → contact@relancio.fr (ou ton adresse)
   3. La page des mentions légales (obligatoire en France)
 -->
@@ -148,7 +161,7 @@
       <a href="#comment">Comment ça marche</a>
       <a href="#prix">Prix</a>
       <a href="#faq">FAQ</a>
-      <a href="STRIPE_FOUNDER_LINK" class="btn btn-primary btn-small">Offre fondateur</a>
+      <a href="#beta" class="btn btn-primary btn-small">Rejoindre la bêta</a>
     </div>
   </div>
 </nav>
@@ -160,10 +173,10 @@
       <h1>Tes clients paient en retard ? <em>On les relance pour toi.</em></h1>
       <p class="lead">Dépose ta facture. Relancio envoie les relances à ta place, poliment puis fermement, jusqu'au paiement. Sans changer ta façon de facturer.</p>
       <div class="hero-cta">
-        <a href="STRIPE_FOUNDER_LINK" class="btn btn-primary">Je veux être payé à temps →</a>
+        <a href="#beta" class="btn btn-primary">Rejoindre la bêta gratuite →</a>
         <a href="#comment" class="btn btn-ghost">Voir comment ça marche</a>
       </div>
-      <p class="hero-note">Offre fondateur : 39 € pour 12 mois, réservée aux 20 premiers. Ou 9 €/mois, sans engagement.</p>
+      <p class="hero-note">Gratuit pendant la bêta. Les inscrits gardent un tarif fondateur quand Relancio devient payant.</p>
     </div>
 
     <div class="timeline" aria-label="Exemple de scénario de relance">
@@ -254,35 +267,80 @@
 <section id="prix" class="pricing">
   <div class="wrap">
     <div class="section-label">Prix</div>
-    <h2>Moins cher qu'une seule facture payée en retard.</h2>
+    <h2>Gratuit pendant la bêta. Ensuite, moins cher qu'une seule facture payée en retard.</h2>
     <div class="plans">
       <div class="plan featured">
-        <span class="plan-badge">20 places</span>
-        <h3>Offre fondateur</h3>
-        <p class="desc">Pour les premiers à nous faire confiance.</p>
-        <div class="price">39 €<small> une fois</small></div>
-        <p class="price-note">12 mois d'accès, soit 3,25 €/mois</p>
+        <span class="plan-badge">Maintenant</span>
+        <h3>Bêta gratuite</h3>
+        <p class="desc">Pour les premiers freelances qui testent Relancio.</p>
+        <div class="price">0 €<small> pendant la bêta</small></div>
+        <p class="price-note">Puis tarif fondateur garanti : 39 € pour 12 mois</p>
         <ul>
           <li>Factures illimitées</li>
           <li>Relances automatiques</li>
           <li>Installation avec moi en visio</li>
-          <li>Ton avis compte pour la suite du produit</li>
+          <li>Ton avis façonne le produit</li>
         </ul>
-        <a href="STRIPE_FOUNDER_LINK" class="btn btn-primary">Je prends l'offre fondateur</a>
+        <a href="#beta" class="btn btn-primary">Rejoindre la bêta</a>
       </div>
       <div class="plan">
-        <h3>Mensuel</h3>
-        <p class="desc">Pour tester un mois, sans engagement.</p>
+        <h3>Après la bêta</h3>
+        <p class="desc">Pour tous les nouveaux utilisateurs.</p>
         <div class="price">9 €<small> / mois</small></div>
-        <p class="price-note">Résiliable à tout moment</p>
+        <p class="price-note">Sans engagement, résiliable à tout moment</p>
         <ul>
           <li>Factures illimitées</li>
           <li>Relances automatiques</li>
           <li>Tableau de bord des paiements</li>
         </ul>
-        <a href="STRIPE_MONTHLY_LINK" class="btn btn-ghost">Commencer à 9 €/mois</a>
+        <a href="#beta" class="btn btn-ghost">Être prévenu du lancement</a>
       </div>
     </div>
+  </div>
+</section>
+
+<section id="beta">
+  <div class="wrap">
+    <div class="section-label">Bêta</div>
+    <h2>Rejoins la bêta gratuite</h2>
+    <p class="sub">Places limitées : je t'installe Relancio moi-même et je t'écris dès que ta place est prête.</p>
+    <form class="signup" id="beta-form" action="https://formspree.io/f/mppdokzl" method="POST">
+      <div class="field">
+        <label for="prenom">Prénom</label>
+        <input id="prenom" name="prenom" type="text" required autocomplete="given-name">
+      </div>
+      <div class="field">
+        <label for="email">Email</label>
+        <input id="email" name="email" type="email" required autocomplete="email">
+      </div>
+      <div class="field">
+        <label for="metier">Ton métier</label>
+        <select id="metier" name="metier" required>
+          <option value="">Choisir…</option>
+          <option>Développeur</option>
+          <option>Graphiste / designer</option>
+          <option>Photographe / vidéaste</option>
+          <option>Rédacteur / traducteur</option>
+          <option>Consultant</option>
+          <option>Autre</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="retards">Tes clients paient en retard…</label>
+        <select id="retards" name="retards" required>
+          <option value="">Choisir…</option>
+          <option>Souvent</option>
+          <option>Parfois</option>
+          <option>Rarement</option>
+        </select>
+      </div>
+      <label class="consent">
+        <input type="checkbox" name="consentement" value="oui" required>
+        <span>J'accepte d'être contacté par email au sujet de Relancio. Mes informations ne sont jamais revendues et je peux demander leur suppression à tout moment.</span>
+      </label>
+      <button type="submit" class="btn btn-primary">Réserver ma place</button>
+      <div class="form-msg" id="form-msg" role="status"></div>
+    </form>
   </div>
 </section>
 
@@ -308,8 +366,8 @@
         <p>Non. Relancio fonctionne à côté de ta façon actuelle de facturer : tu déposes simplement le PDF de ta facture.</p>
       </details>
       <details>
-        <summary>Je peux arrêter l'abonnement mensuel quand je veux ?</summary>
-        <p>Oui. L'offre mensuelle est sans engagement : tu peux la résilier à tout moment, et tu n'es plus prélevé le mois suivant.</p>
+        <summary>La bêta est vraiment gratuite ?</summary>
+        <p>Oui. Tu ne donnes aucune carte bancaire. Quand Relancio deviendra payant, je te préviendrai à l'avance : tu choisiras librement de continuer au tarif fondateur (39 € pour 12 mois) ou d'arrêter.</p>
       </details>
       <details>
         <summary>Relancio encaisse-t-il l'argent à ma place ?</summary>
@@ -323,7 +381,7 @@
   <div class="wrap">
     <h2>Arrête de courir après ton argent.</h2>
     <p class="sub">Dépose ta prochaine facture et laisse Relancio s'occuper des relances.</p>
-    <a href="STRIPE_FOUNDER_LINK" class="btn btn-primary">Je prends l'offre fondateur →</a>
+    <a href="#beta" class="btn btn-primary">Rejoindre la bêta gratuite →</a>
   </div>
 </section>
 
@@ -334,5 +392,30 @@
   </div>
 </footer>
 
+<script>
+  const form = document.getElementById('beta-form');
+  const msg = document.getElementById('form-msg');
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    msg.className = 'form-msg';
+    try {
+      const res = await fetch(form.action, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { 'Accept': 'application/json' }
+      });
+      if (res.ok) {
+        form.reset();
+        msg.textContent = "C'est noté ! Je t'écris très vite pour t'installer Relancio.";
+        msg.className = 'form-msg ok';
+      } else {
+        throw new Error();
+      }
+    } catch {
+      msg.textContent = "Oups, l'envoi n'a pas marché. Réessaie ou écris-moi à contact@relancio.fr.";
+      msg.className = 'form-msg err';
+    }
+  });
+</script>
 </body>
 </html>
